@@ -22,7 +22,7 @@ class IntegrationTest(TestCase):
 
 	def setUp(self):
 		# set autosave to False to avoid testing persistence
-		self.controller = Controller(autosave=False)
+		self.controller = Controller(autosave=True)
 
 		# set autosave to True to test persistence
 		# self.controller = Controller(autosave=True)

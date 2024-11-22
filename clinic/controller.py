@@ -19,12 +19,21 @@ class Controller:
     def __init__(self, autosave):
         self.status = False
         self.users = {}
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        file_path = os.path.join(current_dir, "users.txt")
-        with open(file_path, "r") as file:
-            for line in file:
-                parts = line.strip().split(",")
-                self.users[parts[0]] = parts[1]
+
+        """if autosave is turned on then we retrieve the user data from the users.txt"""
+        """if autosave is turned off then we just hardcode it"""
+        if autosave:
+
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            file_path = os.path.join(current_dir, "users.txt")
+            with open(file_path, "r") as file:
+                for line in file:
+                    parts = line.strip().split(",")
+                    self.users[parts[0]] = parts[1]
+        else:
+            self.users = {"user":"8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", 
+                          "ali" : "6394ffec21517605c1b426d43e6fa7eb0cff606ded9c2956821c2c36bfee2810", 
+                          "kala" : "e5268ad137eec951a48a5e5da52558c7727aaa537c8b308b5e403e6b434e036e"}
 
         self.patients = PatientDAOJSON()
         self.current_login = None

@@ -1,10 +1,12 @@
+import datetime
 from clinic.note import Note
 from clinic.dao.note_dao_pickle import NoteDAOPickle
 
-"""PatientRecord class is used to store all the notes associated to a patient"""
-class PatientRecord:
-    def __init__(self):
-        self.notes = NoteDAOPickle()
+class PatientRecord():
+    def __init__(self, phn, autosave=False):
+        self.phn = phn
+        self.autosave = autosave
+        self.notes = NoteDAOPickle(phn, autosave)
 
     """add_note creates a new note object and adds it into the notes array"""
     def add_note(self, text):

@@ -2,14 +2,16 @@ from clinic.patient_record import PatientRecord
 """Patient class represents a patient and holds a PatientRecord for each patient"""
 
 class Patient:
-    def __init__(self, phn, name, birth_date, phone, email, address):
+    def __init__(self, phn, name, birth_date, phone, email, address, autosave=False):
         self.phn = phn
         self.name = name
         self.birth_date = birth_date
         self.phone = phone
         self.email = email
         self.address = address
-        self.record = PatientRecord()
+
+        self.autosave = autosave
+        self.record = PatientRecord(phn, autosave)
 
     """ensures that when two patients are compared they check all variables to see if they are the same"""
     def __eq__(self, other):
